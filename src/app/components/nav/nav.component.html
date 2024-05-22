@@ -1,1 +1,29 @@
-<p>nav works!</p>
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <mat-list>
+            <mat-list-item routerLink="/">
+                <mat-icon matListItemIcon>home</mat-icon>
+                <div matListItemTitle>Home</div>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon matListItemIcon>folder</mat-icon>
+                <div matListItemTitle>teste</div>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon matListItemIcon>code</mat-icon>
+                <div matListItemTitle>Github</div>
+              </mat-list-item>
+              <mat-list-item>
+                <mat-icon matListItemIcon>logout</mat-icon>
+                <div matListItemTitle>Logout</div>
+              </mat-list-item>
+        </mat-list>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+            Toggle sidenav
+        </button>
+    </div>
+
+</mat-drawer-container>
