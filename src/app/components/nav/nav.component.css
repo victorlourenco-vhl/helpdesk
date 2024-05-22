@@ -10,13 +10,17 @@ img {
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-.sidenav-content {
+.sidenav {
   display: flex;
-  height: 100%;
   align-items: center;
   justify-content: center;
+  padding: 20px;
 }
 
-.sidenav {
-    padding: 20px;
+.sidenav-content {
+  margin: 20px;
+}
+
+.mat-mdc-list-item-icon {
+  color: rgba(0, 0, 0, 0.54);
 }
