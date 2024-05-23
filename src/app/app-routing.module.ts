@@ -8,9 +8,10 @@ const routes: Routes = [
   {
     path: '', component: NavigationComponent, children: [
       {path: 'home', component: HomeComponent},
-      {path: 'tecnico', component: TecnicoListComponent}
+      {path: 'tecnicos', component: TecnicoListComponent}
     ]
-  }
+  },
+  {path: '**', component: NavigationComponent}
 ];
 
 @NgModule({

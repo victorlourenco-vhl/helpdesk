@@ -33,7 +33,7 @@ export class NavigationComponent implements OnInit {
   constructor(private route: Router) { }
 
   ngOnInit(): void {
-    this.route.navigate(['home'])
+    this.route.navigate(['tecnicos'])
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
