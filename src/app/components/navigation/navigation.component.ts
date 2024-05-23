@@ -6,9 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-navigation',
@@ -22,13 +23,14 @@ import { map, shareReplay } from 'rxjs/operators';
     MatListModule,
     MatIconModule,
     AsyncPipe,
-    RouterOutlet
+    RouterOutlet,
+    RouterModule
   ]
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
 
-  constructor(private route: Router) {}
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
     this.route.navigate(['home'])
