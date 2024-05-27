@@ -28,7 +28,7 @@ export class LoginComponent {
   }
 
   updateErrorMessage() {
-     if(this.email.hasError('email')) {
+    if (this.email.hasError('email')) {
       this.errorMessage = 'E-mail inválido';
     } else {
       this.errorMessage = '';
