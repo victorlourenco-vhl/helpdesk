@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
+import { Login } from 'src/app/models/login';
 
 
 
@@ -17,7 +18,13 @@ import { merge } from 'rxjs';
 })
 export class LoginComponent {
 
+  login: Login = {
+    email: '',
+    senha: ''
+  }
+
   email = new FormControl('', [Validators.required, Validators.email]);
+  senha = new FormControl('', [Validators.required, Validators.minLength(3)])
 
   errorMessage = '';
 
@@ -34,6 +41,12 @@ export class LoginComponent {
       this.errorMessage = '';
     }
   }
+
+  camposEstaoInvalidos(): boolean {
+    if(this.email.valid && this.senha.valid) 
+      return false
+    return true
+  } 
 
   hide = true;
   clickEvent(event: MouseEvent) {

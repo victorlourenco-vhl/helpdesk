@@ -21,15 +21,15 @@
                                 <mat-form-field appearance="outline" class="col-12">
                                     <mat-label>Email</mat-label>
                                     <input matInput placeholder="email@exemplo.com" [formControl]="email"
-                                        (blur)="updateErrorMessage()" required>
+                                        [(ngModel)]="login.email" (blur)="updateErrorMessage()" required>
                                     @if (email.invalid) {
                                     <mat-error>{{errorMessage}}</mat-error>
                                     }
                                 </mat-form-field>
-
                                 <mat-form-field appearance="outline" class="col-12">
                                     <mat-label>Senha</mat-label>
-                                    <input matInput [type]="hide ? 'password' : 'text'">
+                                    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="login.senha" [formControl]="senha" required>
+
                                     <button mat-icon-button matSuffix (click)="clickEvent($event)"
                                         [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"
                                         class="rounded-circle btn btn-light btn-sm me-3 d-flex align-items-center justify-content-center p-2">
@@ -72,7 +72,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="d-grid">
-                                        <button class="btn btn-primary btn-lg" type="submit">Entrar</button>
+                                        <button [disabled]="camposEstaoInvalidos()" class="btn btn-primary btn-lg"
+                                            type="submit">Entrar</button>
                                     </div>
                                 </div>
                             </div>
