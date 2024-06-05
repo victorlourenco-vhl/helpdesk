@@ -6,13 +6,18 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
 import { Login } from 'src/app/models/login';
-
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, ReactiveFormsModule, MatIcon, MatIconModule],
+  imports: [MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIcon,
+    MatIconModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -28,10 +33,15 @@ export class LoginComponent {
 
   errorMessage = '';
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
+  }
+
+  logar() {
+    this.toastr.error('Usuário e/ou senha inválidos', 'Login');
+    this.login.senha = ''
   }
 
   updateErrorMessage() {
@@ -43,15 +53,14 @@ export class LoginComponent {
   }
 
   camposEstaoInvalidos(): boolean {
-    if(this.email.valid && this.senha.valid) 
+    if (this.email.valid && this.senha.valid)
       return false
     return true
-  } 
+  }
 
   hide = true;
   clickEvent(event: MouseEvent) {
     this.hide = !this.hide;
     event.stopPropagation();
   }
-
 }
