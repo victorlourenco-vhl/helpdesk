@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
 import { Login } from 'src/app/models/login';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +25,8 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent {
 
   login: Login = {
-    email: '',
-    senha: ''
+    email: 'victor@email.com',
+    senha: 'admin'
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -33,15 +34,18 @@ export class LoginComponent {
 
   errorMessage = '';
 
-  constructor(private toastr: ToastrService) {
+  constructor(private toastr: ToastrService, private authService: AuthService) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
   }
 
   logar() {
-    this.toastr.error('Usuário e/ou senha inválidos', 'Login');
-    this.login.senha = ''
+    this.authService.autenticao(this.login).subscribe(resposta => {
+      console.log("teste")
+    }, () => {
+      this.toastr.error('Usuário e/ou senha inválidos')
+    })
   }
 
   updateErrorMessage() {
@@ -53,9 +57,7 @@ export class LoginComponent {
   }
 
   camposEstaoInvalidos(): boolean {
-    if (this.email.valid && this.senha.valid)
-      return false
-    return true
+    return !(this.email.valid && this.senha.valid)
   }
 
   hide = true;
